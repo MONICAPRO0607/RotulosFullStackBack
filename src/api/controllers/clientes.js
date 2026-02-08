@@ -2,7 +2,6 @@ const { generarLlave } = require("../../utils/jwt");
 const Cliente = require("../models/clientes");
 const bcrypt = require("bcrypt");
 
-// Obtener todos los clientes
 const getCliente = async (req, res, next) => {
   try {
     const clientes = await Cliente.find().populate("pedido");
@@ -12,7 +11,6 @@ const getCliente = async (req, res, next) => {
   }
 };
 
-// Obtener cliente por ID
 const getClienteById = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -23,7 +21,6 @@ const getClienteById = async (req, res, next) => {
   }
 };
 
-// Registro de nuevo cliente
 const registerCliente = async (req, res, next) => {
   try {
     const clienteDuplicated = await Cliente.findOne({ email: req.body.email });
@@ -47,7 +44,6 @@ const registerCliente = async (req, res, next) => {
   };
 };
 
-// Login cliente
 const loginCliente = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -68,10 +64,8 @@ const loginCliente = async (req, res, next) => {
   } catch (error) {
     return res.status(400).json("Error");
   }
-
 };
 
-// Actualizar cliente
 const updateCliente = async (req, res, next) => {
   try {
     const { id } = req.params;
